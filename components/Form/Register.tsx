@@ -29,7 +29,6 @@ export default function RegistrationForm() {
     }
     const onSubmit = async (data:any) => {
         try{
-            await authService.getCsrfToken();
             await authService.registerStudent(data);
             router.push('/');
         }catch(error){
