@@ -6,7 +6,7 @@ import { useForm } from  'react-hook-form';
 
 export default function LoginPage(){
     return(
-       <div className='overflow-hidden'>
+       <div className='overflow-hidden overflow-x-hidden'>
             <RegistrationForm/>
        </div>
     )

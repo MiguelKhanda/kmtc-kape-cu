@@ -5,6 +5,7 @@ import Form from './Form'
 import Input from './Input'
 import {useForm} from 'react-hook-form'
 import {Eye, EyeOff} from 'lucide-react'
+import {authService} from '@/services/authService'
 
 export default function RegistrationForm() {
     const [type,setType] = useState('password')
@@ -26,8 +27,14 @@ export default function RegistrationForm() {
         const result = await trigger(['full_name','email','registration_number','course_name','academic year']);
         if (result) setStep(2);
     }
-    const onSubmit = (data:any) => {
-        router.push('/');
+    const onSubmit = async (data:any) => {
+        try{
+            await authService.getCsrfToken();
+            await authService.registerStudent(data);
+            router.push('/');
+        }catch(error){
+            console.error(error)
+        }
     }
     const password = watch("password")
     const togglePassword = ()=> {
