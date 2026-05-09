@@ -39,9 +39,9 @@ export default function RegistrationForm() {
     const password = watch("password")
     const togglePassword = ()=> {
         if (type === 'password'){
-            setType('name')
+            setType('text')
             setIcon1(<Eye/>)
-        }else if(type==='name'){
+        }else if(type==='text'){
             setType('password')
             setIcon1(<EyeOff/>)
 
@@ -49,9 +49,9 @@ export default function RegistrationForm() {
     }
       const toggleConfirmPassword = ()=> {
         if (confirmType === 'password'){
-            setConfirmType('name')
+            setConfirmType('text')
             setIcon2(<Eye/>)
-        }else if(confirmType==='name'){
+        }else if(confirmType==='text'){
             setIcon2(<EyeOff/>)
             setConfirmType('password')
         }
@@ -110,6 +110,7 @@ export default function RegistrationForm() {
                     <Input
                         label='Password'
                         type={type}
+                        autoComplete="new-password"
                         placeholder='Enter password'
                         {...register('password', {
                             required: "Password is required",
