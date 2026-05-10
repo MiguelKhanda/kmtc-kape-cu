@@ -27,14 +27,19 @@ export default function RegistrationForm() {
         const result = await trigger(['full_name','email','registration_number','course_name','academic_year']);
         if (result) setStep(2);
     }
-    const onSubmit = async (data:any) => {
-        try{
-            await authService.registerStudent(data);
-            router.push('/');
-        }catch(error){
-            console.error(error)
+    const onSubmit = async (data: any) => {
+    try {
+        const { confirm_password, ...rest } = data;
+        const payload = {
+            ...rest,
+            username: data.email, // Mapping email to username
+        };
+        await authService.registerStudent(payload);
+        router.push('/');
+    }catch (error: any) {
+        console.error("Backend validation failed:", error.response?.data);
         }
-    }
+    };
     const password = watch("password")
     const togglePassword = ()=> {
         if (type === 'password'){
