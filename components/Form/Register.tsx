@@ -24,7 +24,7 @@ export default function RegistrationForm() {
     } = useForm();
 
     const handleNext = async () => {
-        const result = await trigger(['full_name','email','registration_number','course_name','academic year']);
+        const result = await trigger(['full_name','email','registration_number','course_name','academic_year']);
         if (result) setStep(2);
     }
     const onSubmit = async (data:any) => {
